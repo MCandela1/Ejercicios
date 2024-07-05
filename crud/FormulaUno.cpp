@@ -7,6 +7,7 @@ struct Piloto {
     char nombre[50];
     char apellido[50];
     int edad;
+    char escuderia[50];
     bool correra;
     int posicionCarrera;
 };
@@ -16,7 +17,7 @@ int cantidadPilotos = 0;
 
 void agregarPiloto() {
     if (cantidadPilotos >= MAX_PILOTOS) {
-        printf("No se pueden agregar más pilotos.\n");
+        printf("No se pueden agregar mÃ¡s pilotos.\n");
         return;
     }
 
@@ -27,11 +28,13 @@ void agregarPiloto() {
     scanf("%s", nuevoPiloto.apellido);
     printf("Ingrese edad del piloto: ");
     scanf("%d", &nuevoPiloto.edad);
+    printf("Ingrese escuderÃ­a del piloto: ");
+    scanf("%s", nuevoPiloto.escuderia);
     nuevoPiloto.correra = false;
     nuevoPiloto.posicionCarrera = -1;
 
     pilotos[cantidadPilotos++] = nuevoPiloto;
-    printf("Piloto agregado con éxito.\n");
+    printf("Piloto agregado con Ã©xito.\n");
 }
 
 void mostrarPilotos() {
@@ -40,9 +43,10 @@ void mostrarPilotos() {
         printf("Nombre: %s\n", pilotos[i].nombre);
         printf("Apellido: %s\n", pilotos[i].apellido);
         printf("Edad: %d\n", pilotos[i].edad);
-        printf("¿Correrá en la carrera?: %s\n", pilotos[i].correra ? "Sí" : "No");
+        printf("EscuderÃ­a: %s\n", pilotos[i].escuderia);
+        printf("Â¿CorrerÃ¡ en la carrera?: %s\n", pilotos[i].correra ? "SÃ­" : "No");
         if (pilotos[i].posicionCarrera != -1) {
-            printf("Posición en la carrera: %d\n", pilotos[i].posicionCarrera);
+            printf("PosiciÃ³n en la carrera: %d\n", pilotos[i].posicionCarrera);
         }
         printf("\n");
     }
@@ -50,38 +54,38 @@ void mostrarPilotos() {
 
 void actualizarEstadoCarrera() {
     int indice;
-    printf("Ingrese el número del piloto a actualizar el estado de la carrera: ");
+    printf("Ingrese el nÃºmero del piloto a actualizar el estado de la carrera: ");
     scanf("%d", &indice);
     --indice;
 
     if (indice < 0 || indice >= cantidadPilotos) {
-        printf("Número de piloto inválido.\n");
+        printf("NÃºmero de piloto invÃ¡lido.\n");
         return;
     }
 
     int correra;
-    printf("¿Correrá en la carrera? (1 para sí, 0 para no): ");
+    printf("Â¿CorrerÃ¡ en la carrera? (1 para sÃ­, 0 para no): ");
     scanf("%d", &correra);
     pilotos[indice].correra = correra == 1;
 
     if (pilotos[indice].correra) {
-        printf("Ingrese la posición que obtuvo en la carrera (1-100, o -1 si aún no ha corrido): ");
+        printf("Ingrese la posiciÃ³n que obtuvo en la carrera (1-100, o -1 si aÃºn no ha corrido): ");
         scanf("%d", &pilotos[indice].posicionCarrera);
     } else {
         pilotos[indice].posicionCarrera = -1;
     }
 
-    printf("Estado de la carrera actualizado con éxito.\n");
+    printf("Estado de la carrera actualizado con Ã©xito.\n");
 }
 
 void eliminarPiloto() {
     int indice;
-    printf("Ingrese el número del piloto a eliminar: ");
+    printf("Ingrese el nÃºmero del piloto a eliminar: ");
     scanf("%d", &indice);
     --indice;
 
     if (indice < 0 || indice >= cantidadPilotos) {
-        printf("Número de piloto inválido.\n");
+        printf("NÃºmero de piloto invÃ¡lido.\n");
         return;
     }
 
@@ -90,7 +94,7 @@ void eliminarPiloto() {
     }
     --cantidadPilotos;
 
-    printf("Piloto eliminado con éxito.\n");
+    printf("Piloto eliminado con Ã©xito.\n");
 }
 
 int main() {
@@ -102,7 +106,7 @@ int main() {
         printf("3. Actualizar estado de carrera\n");
         printf("4. Eliminar piloto\n");
         printf("5. Salir\n");
-        printf("Ingrese una opción: ");
+        printf("Ingrese una opciÃ³n: ");
         scanf("%d", &opcion);
 
         switch (opcion) {
@@ -122,7 +126,7 @@ int main() {
                 printf("Saliendo del programa.\n");
                 break;
             default:
-                printf("Opción inválida. Intente de nuevo.\n");
+                printf("OpciÃ³n invÃ¡lida. Intente de nuevo.\n");
         }
     } while (opcion != 5);
 
